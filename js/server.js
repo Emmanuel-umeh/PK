@@ -202,31 +202,34 @@ window.addEventListener('load', async () => {
 
   
   
-//   $('#cars').on('click', '.checkOutBtn', async function (event) {
-//     $("#loader").show();
-//     console.log("Checking out")
+  $('#submitBtn').click( async function (event) {
+    $("#loader").show();
+    console.log("buying gase out")
    
     
    
 
   
-//     index = event.target.id
-//     console.log("index", index)
+    // index = event.target.id
+    // console.log("index", index)
   
  
   
   
-//     console.log(index)
-//     await contractCall("checkOut", [index], 100000)
+    // console.log(index)
+
+    amount = ($('#amount').val());
+    console.log(amount)
+    await contractCall("buyGas", [amount], parseInt(amount, 10) )
   
   
   
-//     location.reload()
-//     console.log("checked out")
+    // location.reload()
+    console.log("bought succesffully")
   
-//     renderCars()
+    // renderCars()
    
  
 
-//   $("#loader").hide();
-// })
+  $("#loader").hide();
+})
