@@ -204,6 +204,7 @@ window.addEventListener('load', async () => {
   
   $('#submitBtn').click( async function (event) {
     $("#loader").show();
+    event.preventDefault()
     console.log("buying gase out")
    
     
