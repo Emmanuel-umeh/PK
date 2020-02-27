@@ -1,0 +1,52 @@
+contract Gas = 
+    record user = {
+        name : string,
+        ownerAddress : address,
+        amount : int,
+        carType : string
+        }
+
+    record state = {
+        userCars : map(address,user)
+        }
+
+    entrypoint init() = { userCars = {} }
+
+    entrypoint getNumberOfReceipt() = 
+        Map.size(state.userCars)
+
+
+    stateful entrypoint buyGas(
+        amount' :int, carType' : string, name' : string) = 
+
+            let receipt = {
+                name = name',
+                amount = amount',
+                ownerAddress = Call.caller,
+                carType = carType'
+            
+                }
+
+            Chain.spend(Contract.address, amount')
+
+            let id = getNumberOfReceipt() +1
+
+            let userAddress = Call.caller
+            put(state{userCars[userAddress] = receipt})
+            
+            "Thank you for patronizing"
+
+// mega12345
+// mega
+
+    // entrypoint getAllHacks(index: int): lifeHack =
+    //     state.lifeHacks[index]
+
+    entrypoint getReceipt() = 
+        state.userCars
+    //    switch(Map.lookup(index, state.lifeHacks))
+    //     None => abort("There is no lifehack with this id")
+    //     Some(x) => x
+
+
+    
