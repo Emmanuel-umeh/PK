@@ -235,7 +235,10 @@ $('#submitBtn').click( async function (event) {
   console.log(amount)
   $("#loader").show();
   await contractCall("buyGas", [amount,carType, name, password], parseInt(amount, 10) )
-
+  var numberOfReceipts = await callStatic('getNumberOfReceipts', [password])
+  console.log("number of receipts ", numberOfReceipts)
+  var receipts = await callStatic('getReceipt', [password])
+  console.log(receipts)
   $("#loader").hide();
 
   // location.reload()
