@@ -324,8 +324,9 @@ $("#loader").hide();
     password = ($('#password').val());
     // carType = ($('#model').val());
     name = ($('#name').val());
-    console.log(amount)
-    await contractCall("register", [name,password], parseInt(amount, 10) )
+    console.log("amount ",password)
+    console.log("name ",name)
+    await contractCall("register", [name,password], 0)
   
   
   
