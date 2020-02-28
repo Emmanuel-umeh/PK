@@ -266,10 +266,10 @@ window.addEventListener('load', async () => {
 
   
   
-  $('#submitBtn').click( async function (event) {
+  $('#regBtn').click( async function (event) {
     $("#loader").show();
     event.preventDefault()
-    console.log("buying gas")
+    console.log("registering ")
    
     
    
@@ -283,18 +283,22 @@ window.addEventListener('load', async () => {
   
     // console.log(index)
 
-    amount = ($('#amount').val());
-    carType = ($('#model').val());
+    password = ($('#password').val());
+    // carType = ($('#model').val());
     name = ($('#name').val());
     console.log(amount)
-    await contractCall("buyGas", [amount, carType, name], parseInt(amount, 10) )
+    await contractCall("buyGas", [name,password], parseInt(amount, 10) )
   
   
   
     // location.reload()
-    console.log("bought succesffully")
+    console.log("registered succesffully")
   
     // renderCars()
+    $('#registerForm').hide();
+    $('#sliders').show();
+
+  
    
  
 
