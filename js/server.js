@@ -254,7 +254,7 @@ $('#submitBtn').click( async function (event) {
   title.className = 'card-title';
 
   let color = document.createElement('div');
-  color.innerText = task.color;
+  color.innerText = "THis is your receipt";
   color.className = 'card-color';
 
 
