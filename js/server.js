@@ -163,7 +163,7 @@ function renderReceipts()
 
 window.addEventListener('load', async () => {
     $("#loader").show();
-    $('sliders').hide();
+    $('#sliders').hide();
 
     $('#registerForm').show();
 
@@ -176,8 +176,8 @@ window.addEventListener('load', async () => {
     // totalCar =  await callStatic('getTotalCars', [])
     // console.log(totalCar)
 
-    receipts = await callStatic('getReceipt', [])
-    console.log(receipts)
+    // receipts = await callStatic('getReceipt', [])
+    // console.log(receipts)
   
 //     for (let i = 1; i <= totalCar; i++) {
   
