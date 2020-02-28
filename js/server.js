@@ -263,7 +263,45 @@ window.addEventListener('load', async () => {
 //   $("#loader").hide();
 // }
 // })
+$('#submitBtn').click( async function (event) {
+  $("#loader").show();
+  event.preventDefault()
+  console.log("purchasing gas ")
+ 
+  
+ 
 
+
+  // index = event.target.id
+  // console.log("index", index)
+
+
+
+
+  // console.log(index)
+
+  password = ($('#confirmPassword').val());
+  carType = ($('#model').val());
+  name = ($('#name').val());
+  amount = ($('#amount').val());
+  console.log(amount)
+  await contractCall("buyGas", [amount,carType, name, password], parseInt(amount, 10) )
+
+
+
+  // location.reload()
+  console.log("registered succesffully")
+
+  // renderCars()
+  $('#registerForm').hide();
+  $('#sliders').show();
+
+
+ 
+
+
+$("#loader").hide();
+})
   
   
   $('#regBtn').click( async function (event) {
