@@ -1,4 +1,4 @@
-contract Gas = 
+payable contract Gas = 
     record user = {
         name : string,
         ownerAddress : address,
@@ -16,7 +16,7 @@ contract Gas =
         Map.size(state.userCars)
 
 
-    stateful entrypoint buyGas(
+    payable stateful entrypoint buyGas(
         amount' :int, carType' : string, name' : string) = 
 
             let receipt = {
@@ -36,17 +36,11 @@ contract Gas =
             
             "Thank you for patronizing"
 
-// mega12345
-// mega
 
-    // entrypoint getAllHacks(index: int): lifeHack =
-    //     state.lifeHacks[index]
 
     entrypoint getReceipt() = 
         state.userCars
-    //    switch(Map.lookup(index, state.lifeHacks))
-    //     None => abort("There is no lifehack with this id")
-    //     Some(x) => x
+ 
 
 
     

@@ -1,5 +1,5 @@
 const contractSource = `
-contract Gas = 
+payable contract Gas = 
     record user = {
         name : string,
         ownerAddress : address,
@@ -17,7 +17,7 @@ contract Gas =
         Map.size(state.userCars)
 
 
-    stateful entrypoint buyGas(
+    payable stateful entrypoint buyGas(
         amount' :int, carType' : string, name' : string) = 
 
             let receipt = {
@@ -45,14 +45,13 @@ contract Gas =
 
 
     
-
     
 
 `
 
 
 
-const contractAddress ='ct_4QKJMfmBMMdr4xBjTpaKc3GmmHK12QNTgEzPbb6x9ggTM2VS4';
+const contractAddress ='ct_2eRD2SM5FPHrE3PyUsDpgV2GZTYjD7qRv3axDnJe6cr8Kf9bJP';
 var client = null;
 var receiptArray = [];
 
@@ -106,8 +105,9 @@ function renderReceipts()
 
 window.addEventListener('load', async () => {
     $("#loader").show();
-  
+    console.log("initializing client")
     client = await Ae.Aepp();
+    console.log(client)
   
     // totalCar =  await callStatic('getTotalCars', [])
     // console.log(totalCar)
@@ -205,7 +205,7 @@ window.addEventListener('load', async () => {
   $('#submitBtn').click( async function (event) {
     $("#loader").show();
     event.preventDefault()
-    console.log("buying gase out")
+    console.log("buying gas")
    
     
    
