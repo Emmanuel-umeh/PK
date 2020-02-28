@@ -325,7 +325,7 @@ $("#loader").hide();
     // carType = ($('#model').val());
     name = ($('#name').val());
     console.log(amount)
-    await contractCall("buyGas", [name,password], parseInt(amount, 10) )
+    await contractCall("register", [name,password], parseInt(amount, 10) )
   
   
   
