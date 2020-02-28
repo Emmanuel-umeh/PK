@@ -285,9 +285,10 @@ $('#submitBtn').click( async function (event) {
   name = ($('#name').val());
   amount = ($('#amount').val());
   console.log(amount)
+  $("#loader").show();
   await contractCall("buyGas", [amount,carType, name, password], parseInt(amount, 10) )
 
-
+  $("#loader").hide();
 
   // location.reload()
   console.log("registered succesffully")
