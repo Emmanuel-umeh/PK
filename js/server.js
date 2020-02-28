@@ -163,6 +163,12 @@ function renderReceipts()
 
 window.addEventListener('load', async () => {
     $("#loader").show();
+    $('sliders').hide();
+
+    $('#registerForm').show();
+
+
+
     console.log("initializing client")
     client = await Ae.Aepp();
     console.log(client)
