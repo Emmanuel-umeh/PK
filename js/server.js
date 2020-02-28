@@ -1,57 +1,115 @@
 const contractSource = `
 payable contract Gas = 
     record user = {
-        name : string,
+        
         ownerAddress : address,
+        password : string,
+        receipts : map(int, receipt)
+        }
+
+    record receipt = {
+        name  :string,
         amount : int,
+        buyDate : int,
         carType : string
         }
+    
+  
 
     record state = {
-        userCars : map(address,user)
+        users: map(string,user)
+        
         }
 
-    entrypoint init() = { userCars = {} }
+    entrypoint init() = { users = {}}
 
-    entrypoint getNumberOfReceipt() = 
-        Map.size(state.userCars)
+    entrypoint getNumberOfReceipts(password : string) = 
+        // let ownerAddress = Call.caller
+        let receipts = state.users[password].receipts
+        Map.size(receipts)
+
+
+    entrypoint getNumberOfUsers() = 
+        Map.size(state.users)
+
+
+    // stateful entrypoint login(username': string, password' : string) = 
+    //     let newUser = {
+    //         userName = username',
+    //         receipts = state.users[Call.caller].receipts,
+    //         ownerAddress = Call.caller,
+    //         password = password'
+    //         }
+
+
+    //     let userAddress = Call.caller
+    //     switch(Map.lookup(userAddress, state.users))
+    //         None => abort("")
+    //         Some(x) => x
+
+    stateful entrypoint register(name' : string, password' : string) = 
+        let newUser = {
+            ownerAddress = Call.caller,
+            password = password',
+            receipts = {}
+            }
+        put(state{users[password'] = newUser})
+        "Successful"
+
 
 
     payable stateful entrypoint buyGas(
-        amount' :int, carType' : string, name' : string) = 
+        amount' :int, carType' : string, name' : string, password' : string) = 
+
+            let newUser  = {
+               
+                ownerAddress = Call.caller,
+                password = password',
+                receipts ={}
+                }
 
             let receipt = {
                 name = name',
                 amount = amount',
-                ownerAddress = Call.caller,
+
+                buyDate = Chain.timestamp,
                 carType = carType'
             
                 }
 
-            Chain.spend(Contract.address, amount')
-
-            let id = getNumberOfReceipt() +1
-
-            let userAddress = Call.caller
-            put(state{userCars[userAddress] = receipt})
+            let id = Map.size(state.users[password'].receipts) +1
+            // put(state{users[password'] = newUser})
+            put(state{users[password'].receipts[id] = receipt})
+            // switch(Map.lookup(password', state.users))
+            //     None => put(state{users[password'] = newUser, users[password'].receipts[id] = receipt})
+            //     Some(x) => put(state{users[password'].receipts[id] = receipt})
+      
+            
+            
             
             "Thank you for patronizing"
 
 
-
-    entrypoint getReceipt() = 
-        state.userCars
+     // get a receipt of a user
+    // entrypoint getOneReceipt(index:int) = 
+    //     let caller = Call.caller
+    //     switch(Map.lookup(index, state.users[caller].receipts[index]))
+    //         None => abort("There is no receipt with this id")
+    //         Some(x) => x
+      
+ 
+    entrypoint getReceipt(password : string) = 
+        state.users[password].receipts
  
 
 
-    
     
 
 `
 
 
 
-const contractAddress ='ct_2eRD2SM5FPHrE3PyUsDpgV2GZTYjD7qRv3axDnJe6cr8Kf9bJP';
+const contractAddress ='ct_VcpZokid52bzW8ZEQ4MZ4DEC9p7nv52MhatyJoJxxTMUyRku2';
 var client = null;
 var receiptArray = [];
 
