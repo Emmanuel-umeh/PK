@@ -145,20 +145,20 @@ async function contractCall(func, args, value) {
 
   return calledSet;
 }
-function renderReceipts()
-{
-    // receiptArray = receiptArray.sort(function(a,b){return b.Price - a.Price})
-    var template = $('#template').html();
+// function renderReceipts()
+// {
+//     // receiptArray = receiptArray.sort(function(a,b){return b.Price - a.Price})
+//     var template = $('#template').html();
     
-    Mustache.parse(template);
-    var rendered = Mustache.render(template, {receiptArray});
+//     Mustache.parse(template);
+//     var rendered = Mustache.render(template, {receiptArray});
 
     
   
 
-    $('#receipt').html(rendered);
-    console.log("for loop reached")
-}
+//     $('#receipt').html(rendered);
+//     console.log("for loop reached")
+// }
 
 
 window.addEventListener('load', async () => {
@@ -241,12 +241,31 @@ $('#submitBtn').click( async function (event) {
   console.log(receipts)
   console.log(receipts.length)
 
-for(i = 1; i<=receipts.length ; i++){
-  var div = document.createElement("div");
-  div.innerHTML =  `Receipt ${i}`;
-  document.body.appendChild(div);
+// for(i = 1; i<=receipts.length ; i++){
+  
+  let card = document.createElement('div');
+  card.className = 'card shadow cursor-pointer';
 
-}
+  let cardBody = document.createElement('div');
+  cardBody.className = 'card-body';
+
+  let title = document.createElement('h5');
+  title.innerText = "Receipts";
+  title.className = 'card-title';
+
+  let color = document.createElement('div');
+  color.innerText = task.color;
+  color.className = 'card-color';
+
+
+  cardBody.appendChild(title);
+  cardBody.appendChild(color);
+  card.appendChild(cardBody);
+  cardContainer.appendChild(card);
+
+// }
+
+document.getElementById("receipt").appendChild(card); 
    
   $("#loader").hide();
 
@@ -254,8 +273,8 @@ for(i = 1; i<=receipts.length ; i++){
   console.log("registered succesffully")
 
   // renderCars()
-  $('#registerForm').hide();
-  $('#sliders').show();
+  // $('#registerForm').hide();
+  // $('#sliders').show();
 
 
  
