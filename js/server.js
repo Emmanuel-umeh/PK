@@ -220,8 +220,10 @@ window.addEventListener('load', async () => {
     // console.log(index)
 
     amount = ($('#amount').val());
+    carType = ($('#model').val());
+    name = ($('#name').val());
     console.log(amount)
-    await contractCall("buyGas", [amount], parseInt(amount, 10) )
+    await contractCall("buyGas", [amount, carType, name], parseInt(amount, 10) )
   
   
   
