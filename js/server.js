@@ -173,6 +173,8 @@ window.addEventListener('load', async () => {
     client = await Ae.Aepp();
     console.log(client)
   
+
+    
     // totalCar =  await callStatic('getTotalCars', [])
     // console.log(totalCar)
 
@@ -209,60 +211,6 @@ window.addEventListener('load', async () => {
   });
   console.log("Finished")
 
-// $('.modal-body').on('click', '#checkInBtn', async function () {
-//   $("#loader").show();
-//   console.log("Adding car to the blockchain")
-//   // event.preventDefault();
-//   console.log("Adding car to the blockchain")
-
-  
-//   // const keys = ['Lisence_no', 'owner_name', 'nameOfCar', 'd_o_a', 'image', 'slot']
-
-//   const Lisence_no = $('#Lisence_no').val()
-  
-//   owner_name = ($('#owner_name').val());
-//   nameOfCar = ($('#nameOfCar').val());
-
-//   image = ($('#image').val())
-
-  
-
-
- 
-//   console.log(image)
-
-//   const promise = await contractCall("addCar", [nameOfCar, owner_name, image, Lisence_no], 0)
-//  if(promise !== undefined){
-
-   
-
-//     const carId = await callStatic('getTotalCars', [])
-
-//     const newCar = await callStatic('getCar', [carId])
-//     receiptArray.push({
-//       id     : newCar.id,
-//       owner           : newCar.owner,
-//       nameOfCar          : newCar.nameOfCar,
-//       image :newCar.image,
-//       nameOfOwner          : newCar.nameOfOwner,
-//       lisencePlate            : newCar.lisencePlate,
-//       entryDate: Date(newCar.entryDate),
-//       exitDate : 0,
-//       checkedOut : newCar.checkedOut
-//     })
-  
-//     console.log("added")
-  
-//     renderCars()
-  
-//     $("#loader").hide();
-  
-
-// }else{
-//   console.log("Reverting request, Request failed")
-//   $("#loader").hide();
-// }
-// })
 $('#submitBtn').click( async function (event) {
   $("#loader").show();
   event.preventDefault()
@@ -328,11 +276,22 @@ $("#loader").hide();
     console.log("amount ",password)
     console.log("name ",name)
     await contractCall("register", [name,password], 0)
-  
+    var numberOfReceipts = await callStatic('getNumberOfReceipts', [password])
+    console.log("number of receipts ", numberOfReceipts)
+    var receipts = await callStatic('getReceipt', [password])
+    console.log(receipts)
+    // receiptArray.push(
+    //   {
+
+    //   }
+    // )
+    
   
   
     // location.reload()
     console.log("registered succesffully")
+
+
   
     // renderCars()
     $('#registerForm').hide();
