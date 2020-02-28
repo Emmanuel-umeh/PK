@@ -261,12 +261,12 @@ $('#submitBtn').click( async function (event) {
   cardBody.appendChild(title);
   cardBody.appendChild(color);
   card.appendChild(cardBody);
-  cardContainer.appendChild(card);
+  
 
 // }
 
 document.getElementById("receipt").appendChild(card); 
-   
+// cardContainer.appendChild(card);
   $("#loader").hide();
 
   // location.reload()
